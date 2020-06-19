@@ -5,3 +5,4 @@ air.exe
 gin.log
 .air.conf
 go.sum
+Dockerfile
