@@ -1,0 +1,7 @@
+.vscode/
+go.sum
+main.exe
+air.exe
+gin.log
+.air.conf
+go.sum
