@@ -4,5 +4,6 @@ main.exe
 air.exe
 gin.log
 .air.conf
+.env
 go.sum
 Dockerfile
