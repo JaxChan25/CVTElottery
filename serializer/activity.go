@@ -19,8 +19,9 @@ type Activity struct {
 	LimitType       int     `json:"limit_type" binding:"required"` //(0:无限制,1:每日抽奖次数限制,2:总抽奖次数限制)',
 	LimitNum        int     `json:"limit_num" binding:"required"`  // '限制的抽奖次数',
 	RuleText        string  `json:"rule_text" binding:"required"`  // '活动规则介绍'
-	ForegroundImage string  `json:"foreground_image" binding:"required"`
-	BackgroundImage string  `json:"background_image" binding:"required"`
+	BannerImage     string  `json:"banner_image" binding:"required"`
+	LotteryImage    string  `json:"lottery_image" binding:"required"`
+	BackgrouldColor string  `json:"backgrould_color" binding:"required"`
 	VirtualNum      int     `json:"virtual_num" binding:"required"` //'虚拟参与者个数'
 	CreatedAt       string  `json:"created_at"`
 	ParticipateNum  int     `json:"participate_num" binding:"required"` //真实参与个数
@@ -43,8 +44,9 @@ func BuildActivity(activity model.Activity) Activity {
 		LimitType:       activity.LimitType,
 		LimitNum:        activity.LimitNum,
 		RuleText:        activity.RuleText,
-		ForegroundImage: activity.ForegroundImage,
-		BackgroundImage: activity.BackgroundImage,
+		BannerImage:     activity.BannerImage,
+		LotteryImage:    activity.LotteryImage,
+		BackgrouldColor: activity.BackgrouldColor,
 		VirtualNum:      activity.VirtualNum,
 		CreatedAt:       activity.CreatedAt.Format("2006-01-02 15:04"),
 		ParticipateNum:  activity.PaticiateNumber(),

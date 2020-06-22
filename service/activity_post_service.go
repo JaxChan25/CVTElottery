@@ -8,7 +8,6 @@ import (
 
 // ActivityPostService 管理活动新增的服务
 type ActivityPostService struct {
-	ID              uint      `json:"id"`
 	GameManagerID   uint      `json:"game_manager_id" binding:"required"`
 	Name            string    `json:"name" binding:"required"`
 	Title           string    `json:"title" binding:"required"`
@@ -20,8 +19,9 @@ type ActivityPostService struct {
 	LimitType       int       `json:"limit_type" binding:"required"` //(0:无限制,1:每日抽奖次数限制,2:总抽奖次数限制)',
 	LimitNum        int       `json:"limit_num" binding:"required"`  // '限制的抽奖次数',
 	RuleText        string    `json:"rule_text" binding:"required"`  // '活动规则介绍'
-	ForegroundImage string    `json:"foreground_image"`
-	BackgroundImage string    `json:"background_image"`
+	BannerImage     string    `json:"banner_image"`
+	LotteryImage    string    `json:"lottery_image"`
+	BackgrouldColor string    `json:"backgrould_color"`
 	VirtualNum      int       `json:"virtual_num" binding:"required"` //'虚拟参与者个数'
 }
 
@@ -40,8 +40,9 @@ func (service *ActivityPostService) Post() serializer.Response {
 		LimitType:       service.LimitType,
 		LimitNum:        service.LimitNum,
 		RuleText:        service.RuleText,
-		ForegroundImage: service.ForegroundImage,
-		BackgroundImage: service.BackgroundImage,
+		BannerImage:     service.BannerImage,
+		LotteryImage:    service.LotteryImage,
+		BackgrouldColor: service.BackgrouldColor,
 		VirtualNum:      service.VirtualNum,
 	}
 

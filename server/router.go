@@ -135,10 +135,11 @@ func NewRouter() *gin.Engine {
 		* @param limit_type 必选 string (0:无限制,1:每日抽奖次数限制,2:总抽奖次数限制)',
 		* @param limit_num 必选 string '限制的抽奖次数',
 		* @param rule_text 必选 string '活动规则介绍'
-		* @param foreground_image 可选 string 中奖等级
-		* @param background_image 可选 string 中奖等级
-		* @param virtual_num 必选 string 虚拟参与者个数'
-		* @return {"code":0,"data":{"id":2,"game_manager_id":2,"name":"社团抽奖活动","title":"1111title","type":0,"state":10,"mode":1,"limit_type":1,"limit_num":10,"rule_text":"只有美女才可以抽奖","foreground_image":"ForegroundImage_default.png","background_image":"BackgroundImage_default.png","virtual_num":888,"created_at":"2020-06-15 13:25"},"msg":""}
+		* @param foreground_image 可选 string 头图
+		* @param banner_image 可选 string 抽奖图
+		* @param lottery_image 可选 string 背景颜色
+		* @param backgrould_color 必选 string 虚拟参与者个数'
+		* @return {"code":0,"data":{"id":1,"game_manager_id":1,"game_prizes":null,"name":"123456","title":"123456","type":2,"state":2,"mode":2,"start_time":"0001-01-01 00:00","end_time":"0001-01-01 00:00","limit_type":1,"limit_num":10,"rule_text":"56415d6sa","banner_image":"123456","lottery_image":"123456","backgrould_color":"123456","virtual_num":10,"created_at":"2020-06-22 20:36","participate_num":0},"msg":""}
 		 */
 		v1.POST("activity", api.ActivityPost)
 

@@ -16,7 +16,7 @@ type GameUser struct {
 	UserName       string       `gorm:"type:varchar(50);not null"` //用户登录名
 	RealName       string       `gorm:"type:varchar(50);not null"` //真实姓名
 	Avatar         string       `gorm:"default:'default.png'"`     //头像，可以为null
-	Mobile         string       `gorm:"type:varchar(11);not null"` //真实姓名
+	Mobile         string       `gorm:"type:varchar(11);not null"` //电话号码
 	LastLoginTime  time.Time
 }
 
