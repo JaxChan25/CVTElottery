@@ -11,7 +11,7 @@ type UserRegisterService struct {
 	UserName        string `form:"user_name" json:"user_name" binding:"required,min=5,max=30"`
 	Password        string `form:"password" json:"password" binding:"required,min=6,max=40"`
 	PasswordConfirm string `form:"password_confirm" json:"password_confirm" binding:"required,min=6,max=40"`
-	RealName        string `form:"real_name" json:"real_name" binding:"required,min=1,max=30"`
+	RealName        string `form:"real_name" json:"real_name"`
 	Avatar          string `form:"avatar" json:"avatar"`
 	Mobile          string `form:"mobile" json:"mobile" binding:"required,min=11,max=11"`
 }

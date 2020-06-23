@@ -7,3 +7,4 @@ gin.log
 .env
 go.sum
 Dockerfile
+showdoc_api.sh

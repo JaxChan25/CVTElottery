@@ -6,10 +6,12 @@ import "singo/model"
 type Address struct {
 	ID         uint   `json:"id" binding:"required"`
 	GameUserID uint   `json:"game_user_id" binding:"required"` //外码
-	Province   string `json:"province" binding:"required"`     //省
-	City       string `json:"city" binding:"required"`         //市
-	District   string `json:"district" binding:"required"`     //区
-	Detail     string `json:"detail" binding:"required"`       //详细地址
+	RealName   string `form:"real_name" json:"real_name" binding:"required,min=1,max=4"`
+	Mobile     string `form:"mobile" json:"mobile" binding:"required,min=11,max=11"`
+	Province   string `json:"province" binding:"required"` //省
+	City       string `json:"city" binding:"required"`     //市
+	District   string `json:"district" binding:"required"` //区
+	Detail     string `json:"detail" binding:"required"`   //详细地址
 	CreatedAt  string `json:"created_at"`
 }
 
@@ -19,6 +21,8 @@ func BuildAddress(address model.Address) Address {
 	return Address{
 		ID:         address.ID,
 		GameUserID: address.GameUserID,
+		RealName:   address.RealName,
+		Mobile:     address.Mobile,
 		Province:   address.Province,
 		City:       address.City,
 		District:   address.District,

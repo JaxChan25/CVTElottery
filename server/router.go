@@ -41,7 +41,7 @@ func NewRouter() *gin.Engine {
 		* @description 抽奖用户的注册api
 		* @method post
 		* @url /api/v1/user/register
-		* @param user_name 必选 string 用户名
+		* @param user_name 可选 string 用户名
 		* @param password 必选 string 密码
 		* @param password_confirm 必选 string 确认密码
 		* @param real_name 必选 string 真实姓名
@@ -253,6 +253,8 @@ func NewRouter() *gin.Engine {
 			* @url /api/v1/address
 			* @param game_user_id 必选 int 外码
 			* @param province 必选 string 省份
+			* @param real_name 必选 string 真实姓名
+			* @param mobile 必选 string 手机号码
 			* @param city 必选 string 市
 			* @param district 必选 string 区
 			* @param detail 必选 string 详细地址
