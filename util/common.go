@@ -35,8 +35,6 @@ func IsMobile(userAgent string) bool {
 			break
 		}
 	}
-	// if isMobile {
-	// 	Log().Println("TRUE")
-	// }
+
 	return isMobile
 }

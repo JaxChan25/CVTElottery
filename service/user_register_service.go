@@ -3,6 +3,7 @@ package service
 import (
 	"singo/model"
 	"singo/serializer"
+	"singo/util"
 	"time"
 )
 
@@ -52,14 +53,19 @@ func (service *UserRegisterService) Register() serializer.Response {
 		return *err
 	}
 
+	//生成16位的salt
+	salt := util.RandStringRunes(16)
 	// 加密密码
-	if err := user.SetPassword(service.Password); err != nil {
+	if err := user.SetPassword(service.Password, salt); err != nil {
 		return serializer.Err(
 			serializer.CodeEncryptError,
 			"密码加密失败",
 			err,
 		)
 	}
+
+	//设置盐值
+	user.Salt = salt
 
 	// 创建用户
 	if err := model.DB.Create(&user).Error; err != nil {
