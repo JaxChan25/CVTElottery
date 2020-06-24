@@ -23,7 +23,7 @@ type Activity struct {
 	EndTime         time.Time
 	LimitType       int    `gorm:"not null"`                   //(0:无限制,1:每日抽奖次数限制,2:总抽奖次数限制)',
 	LimitNum        int    `gorm:"not null;default:'0'"`       // '限制的抽奖次数',
-	RuleText        string `gorm:"type:varchar(200);not null"` // '活动规则介绍'
+	RuleText        string `gorm:"type:varchar(512);not null"` // '活动规则介绍'
 	BannerImage     string `gorm:"type:varchar(150);not null;default:'BannerImager_default.png'"`
 	LotteryImage    string `gorm:"type:varchar(150);not null;default:'LotteryImage_default.png'"`
 	BackgrouldColor string `gorm:"type:varchar(20);not null;default:'#FFFFFF'"`
