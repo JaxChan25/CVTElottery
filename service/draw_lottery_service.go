@@ -28,6 +28,14 @@ func (service *DrawLotteryService) Post() serializer.Response {
 		return serializer.ParamErr("活动查询失败", err)
 	}
 
+	// util.Log().Info(time.Now().Format("2006-01-02 15:04" + "\n"))
+	// util.Log().Info(activity.StartTime.Format("2006-01-02 15:04" + "\n"))
+	// util.Log().Info(activity.EndTime.Format("2006-01-02 15:04" + "\n"))
+
+	if time.Now().Before(activity.StartTime) || time.Now().After(activity.EndTime) {
+		return serializer.ParamErr("活动尚未开始或者活动已经结束", err)
+	}
+
 	var key string
 	if activity.LimitType == 1 { //每日
 		key = cache.SurplusTimesDailyActivityGameUserKey(service.ActivityID, service.GameUserID)

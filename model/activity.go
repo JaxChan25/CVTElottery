@@ -16,9 +16,6 @@ type Activity struct {
 	GameManagerID   uint         //外码
 	Name            string       `gorm:"type:varchar(15);not null"`
 	Title           string       `gorm:"type:varchar(20);default:'大奖盘抽奖';not null"`
-	Type            int          `gorm:"not null;default:'0'"` //活动种类，0：大转盘
-	State           int          `gorm:"not null;default:'0'"` //活动状态(0:未开始,1:已开始,-1:已结束)
-	Mode            int          `gorm:"not null;default:'1'"` //'活动模式(0:系统活动,1:独立活动) 本项目中总为1',
 	StartTime       time.Time    `gorm:"not null"`
 	EndTime         time.Time
 	LimitType       int    `gorm:"not null"`                   //(0:无限制,1:每日抽奖次数限制,2:总抽奖次数限制)',

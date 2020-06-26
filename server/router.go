@@ -124,22 +124,19 @@ func NewRouter() *gin.Engine {
 		* @description 添加活动的api。
 		* @method post
 		* @url /api/v1/activity
-		* @param game_manager_id 必选 string 管理员id
+		* @param game_manager_id 必选 int 管理员id
 		* @param name 必选 string 活动名称
 		* @param title 必选 string 活动title
-		* @param type 必选 string 活动种类，0：大转盘
-		* @param state 必选 string 活动状态(0:未开始,1:已开始,-1:已结束)
-		* @param mode 必选 string '活动模式(0:系统活动,1:独立活动) 本项目中总为1',
-		* @param start_time 可选 string
-		* @param end_time 可选 string
-		* @param limit_type 必选 string (0:无限制,1:每日抽奖次数限制,2:总抽奖次数限制)',
-		* @param limit_num 必选 string '限制的抽奖次数',
-		* @param rule_text 必选 string '活动规则介绍'
-		* @param foreground_image 可选 string 头图
-		* @param banner_image 可选 string 抽奖图
-		* @param lottery_image 可选 string 背景颜色
-		* @param backgrould_color 必选 string 虚拟参与者个数'
-		* @return {"code":0,"data":{"id":1,"game_manager_id":1,"game_prizes":null,"name":"123456","title":"123456","type":2,"state":2,"mode":2,"start_time":"0001-01-01 00:00","end_time":"0001-01-01 00:00","limit_type":1,"limit_num":10,"rule_text":"56415d6sa","banner_image":"123456","lottery_image":"123456","backgrould_color":"123456","virtual_num":10,"created_at":"2020-06-22 20:36","participate_num":0},"msg":""}
+		* @param start_time 必选 string
+		* @param end_time 必选 string
+		* @param limit_type 必选 int (1:每日抽奖次数限制,2:总抽奖次数限制)',
+		* @param limit_num 必选 int '限制的抽奖次数',
+		* @param rule_text 必选 string '活动规则介绍'，换行符使用:\r\n
+		* @param banner_image 必选 string 头图
+		* @param lottery_image 必选 string 抽奖图
+		* @param background_color 必选 string 背景颜色
+		* @param virtual_num 必选 int 虚拟参与者个数'
+		* @return
 		 */
 		v1.POST("activity", api.ActivityPost)
 
@@ -164,7 +161,7 @@ func NewRouter() *gin.Engine {
 		* @method get
 		* @url /api/v1/activity/id
 		* @param id 必选 int 主键
-		* @return {"code":0,"data":{"id":2,"game_manager_id":2,"game_prizes":[{"id":3,"activity_id":2,"level":"0","name":"帅哥陈亮","prob":0.8,"all_num":10,"surplus_num":1,"image":"PrizeImage_default.png","if_win":1,"created_at":"2020-06-14 23:41"},{"id":4,"activity_id":2,"level":"0","name":"帅哥陈亮","prob":0.8,"all_num":10,"surplus_num":1,"image":"PrizeImage_default.png","if_win":1,"created_at":"2020-06-15 13:13"},{"id":5,"activity_id":2,"level":"0","name":"帅哥陈亮","prob":0.8,"all_num":10,"surplus_num":1,"image":"PrizeImage_default.png","if_win":1,"created_at":"2020-06-15 13:13"},{"id":6,"activity_id":2,"level":"0","name":"帅哥陈亮","prob":0.8,"all_num":10,"surplus_num":1,"image":"PrizeImage_default.png","if_win":1,"created_at":"2020-06-15 13:13"}],"name":"社团抽奖活动","title":"1111title","type":0,"state":10,"mode":1,"start_time":"0001-01-01 00:00","end_time":"0001-01-01 00:00","limit_type":1,"limit_num":10,"rule_text":"只有美女才可以抽奖","foreground_image":"ForegroundImage_default.png","background_image":"BackgroundImage_default.png","virtual_num":888,"created_at":"2020-06-15 13:25"},"msg":""}
+		* @return {"code":0,"data":{"id":1,"game_manager_id":1,"game_prizes":[{"id":1,"activity_id":1,"level":"一等奖","name":"葫芦娃1","prob":0.1,"all_num":100,"surplus_num":100,"image":"https://qdtalk.com/wp-content/uploads/2017/09/1-2.png","if_win":2,"created_at":"2020-06-25 18:30"},{"id":2,"activity_id":1,"level":"一等奖","name":"葫芦娃2","prob":0.1,"all_num":100,"surplus_num":100,"image":"https://qdtalk.com/wp-content/uploads/2017/09/1-2.png","if_win":2,"created_at":"2020-06-25 18:30"},{"id":3,"activity_id":1,"level":"一等奖","name":"葫芦娃3","prob":0.1,"all_num":100,"surplus_num":100,"image":"https://qdtalk.com/wp-content/uploads/2017/09/1-2.png","if_win":2,"created_at":"2020-06-25 18:30"},{"id":4,"activity_id":1,"level":"二等奖","name":"葫芦娃4","prob":0.1,"all_num":100,"surplus_num":100,"image":"https://qdtalk.com/wp-content/uploads/2017/09/1-2.png","if_win":2,"created_at":"2020-06-25 18:30"},{"id":5,"activity_id":1,"level":"二等奖","name":"葫芦娃5","prob":0.1,"all_num":100,"surplus_num":98,"image":"https://qdtalk.com/wp-content/uploads/2017/09/1-2.png","if_win":2,"created_at":"2020-06-25 18:30"},{"id":6,"activity_id":1,"level":"二等奖","name":"葫芦娃6","prob":0.1,"all_num":100,"surplus_num":100,"image":"https://qdtalk.com/wp-content/uploads/2017/09/1-2.png","if_win":2,"created_at":"2020-06-25 18:30"},{"id":7,"activity_id":1,"level":"三等奖","name":"葫芦娃7","prob":0.1,"all_num":100,"surplus_num":98,"image":"https://qdtalk.com/wp-content/uploads/2017/09/1-2.png","if_win":2,"created_at":"2020-06-25 18:30"},{"id":8,"activity_id":1,"level":"三等奖","name":"葫芦娃8","prob":0.1,"all_num":100,"surplus_num":100,"image":"https://qdtalk.com/wp-content/uploads/2017/09/1-2.png","if_win":2,"created_at":"2020-06-25 18:30"},{"id":9,"activity_id":1,"level":"三等奖","name":"葫芦娃9","prob":0.1,"all_num":100,"surplus_num":100,"image":"https://qdtalk.com/wp-content/uploads/2017/09/1-2.png","if_win":2,"created_at":"2020-06-25 18:30"},{"id":10,"activity_id":1,"level":"不中奖","name":"葫芦娃10","prob":0.1,"all_num":100,"surplus_num":100,"image":"https://qdtalk.com/wp-content/uploads/2017/09/1-2.png","if_win":1,"created_at":"2020-06-25 18:30"}],"name":"活动大转盘","title":"软件工程毕业晚会抽奖","start_time":"2020-06-27 15:06","end_time":"2020-07-24 15:06","limit_type":1,"limit_num":10,"rule_text":"1","banner_image":"https://cvte-oss.oss-cn-shenzhen.aliyuncs.com/banner_default.png","lottery_image":"https://cvte-oss.oss-cn-shenzhen.aliyuncs.com/lottery_default.png","background_color":"#FF6412","virtual_num":10,"created_at":"2020-06-24 13:43","participate_num":7},"msg":""}
 		 */
 		v1.GET("activity/:id", api.ShowActivity)
 
@@ -179,7 +176,9 @@ func NewRouter() *gin.Engine {
 		* @param title 可选 string 活动标题
 		* @param limit_num 可选 int 限制的抽奖次数
 		* @param rule_text 可选 string 活动规则介绍
-		* @return {"code":0,"data":{"id":1,"game_manager_id":2,"game_prizes":null,"name":"原title","title":"测试2","type":0,"state":10,"mode":1,"start_time":"0001-01-01 00:00","end_time":"0001-01-01 00:00","limit_type":1,"limit_num":3,"rule_text":"原rule_text","foreground_image":"ForegroundImage_default.png","background_image":"BackgroundImage_default.png","virtual_num":888,"created_at":"2020-06-15 13:21","participate_num":0},"msg":""}
+		* @param start_time 可选 string
+		* @param end_time 可选 string
+		* @return {"code":0,"data":{"id":1,"game_manager_id":1,"game_prizes":[{"id":1,"activity_id":1,"level":"一等奖","name":"葫芦娃1","prob":0.1,"all_num":100,"surplus_num":100,"image":"https://qdtalk.com/wp-content/uploads/2017/09/1-2.png","if_win":2,"created_at":"2020-06-25 18:30"},{"id":2,"activity_id":1,"level":"一等奖","name":"葫芦娃2","prob":0.1,"all_num":100,"surplus_num":100,"image":"https://qdtalk.com/wp-content/uploads/2017/09/1-2.png","if_win":2,"created_at":"2020-06-25 18:30"},{"id":3,"activity_id":1,"level":"一等奖","name":"葫芦娃3","prob":0.1,"all_num":100,"surplus_num":100,"image":"https://qdtalk.com/wp-content/uploads/2017/09/1-2.png","if_win":2,"created_at":"2020-06-25 18:30"},{"id":4,"activity_id":1,"level":"二等奖","name":"葫芦娃4","prob":0.1,"all_num":100,"surplus_num":100,"image":"https://qdtalk.com/wp-content/uploads/2017/09/1-2.png","if_win":2,"created_at":"2020-06-25 18:30"},{"id":5,"activity_id":1,"level":"二等奖","name":"葫芦娃5","prob":0.1,"all_num":100,"surplus_num":98,"image":"https://qdtalk.com/wp-content/uploads/2017/09/1-2.png","if_win":2,"created_at":"2020-06-25 18:30"},{"id":6,"activity_id":1,"level":"二等奖","name":"葫芦娃6","prob":0.1,"all_num":100,"surplus_num":100,"image":"https://qdtalk.com/wp-content/uploads/2017/09/1-2.png","if_win":2,"created_at":"2020-06-25 18:30"},{"id":7,"activity_id":1,"level":"三等奖","name":"葫芦娃7","prob":0.1,"all_num":100,"surplus_num":98,"image":"https://qdtalk.com/wp-content/uploads/2017/09/1-2.png","if_win":2,"created_at":"2020-06-25 18:30"},{"id":8,"activity_id":1,"level":"三等奖","name":"葫芦娃8","prob":0.1,"all_num":100,"surplus_num":100,"image":"https://qdtalk.com/wp-content/uploads/2017/09/1-2.png","if_win":2,"created_at":"2020-06-25 18:30"},{"id":9,"activity_id":1,"level":"三等奖","name":"葫芦娃9","prob":0.1,"all_num":100,"surplus_num":100,"image":"https://qdtalk.com/wp-content/uploads/2017/09/1-2.png","if_win":2,"created_at":"2020-06-25 18:30"},{"id":10,"activity_id":1,"level":"不中奖","name":"葫芦娃10","prob":0.1,"all_num":100,"surplus_num":100,"image":"https://qdtalk.com/wp-content/uploads/2017/09/1-2.png","if_win":1,"created_at":"2020-06-25 18:30"}],"name":"活动大转盘","title":"软件工程毕业晚会抽奖","start_time":"2020-06-27 15:06","end_time":"2020-07-24 15:06","limit_type":1,"limit_num":10,"rule_text":"1","banner_image":"https://cvte-oss.oss-cn-shenzhen.aliyuncs.com/banner_default.png","lottery_image":"https://cvte-oss.oss-cn-shenzhen.aliyuncs.com/lottery_default.png","background_color":"#FF6412","virtual_num":10,"created_at":"2020-06-24 13:43","participate_num":7},"msg":""}
 		 */
 		v1.POST("activity/:id", api.UpdateActivity)
 
@@ -224,6 +223,7 @@ func NewRouter() *gin.Engine {
 			* @param game_user_id 必选 int 用户主键
 			* @param activity_id 必选 int 活动主键
 			* @return {"code":0,"data":{"id":7,"activity_id":1,"level":"不中奖","name":"谢谢惠顾","prob":0.6,"all_num":1000,"surplus_num":1000,"image":"PrizeImage_default.png","if_win":1,"created_at":"2020-06-17 14:33"},"msg":""}
+			* @remark 活动必须处于运行期间，才可以进行抽奖。否则返回相应错误。
 			 */
 			auth.POST("drawlottery", api.DrawLottery)
 

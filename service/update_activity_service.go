@@ -3,14 +3,17 @@ package service
 import (
 	"singo/model"
 	"singo/serializer"
+
+	"github.com/araddon/dateparse"
 )
 
 // UpdateActivityService 管理活动修改的服务
 type UpdateActivityService struct {
-	Title    string `json:"title"`
-	LimitNum int    `json:"limit_num"`  // '限制的抽奖次数',
-	RuleText string `json:"rule_text" ` // '活动规则介绍'
-
+	Title     string `json:"title"`
+	LimitNum  int    `json:"limit_num"`  // '限制的抽奖次数',
+	RuleText  string `json:"rule_text" ` // '活动规则介绍'
+	StartTime string `json:"start_time"`
+	EndTime   string `json:"end_time"`
 }
 
 // Post 用于修改活动
@@ -26,10 +29,16 @@ func (service *UpdateActivityService) Post(id string) serializer.Response {
 			Error: err.Error(),
 		}
 	}
+
+	t1, err := dateparse.ParseAny(service.StartTime)
+	t2, err := dateparse.ParseAny(service.EndTime)
+
 	err = model.DB.Model(&activity).Updates(model.Activity{
-		Title:    service.Title,
-		LimitNum: service.LimitNum,
-		RuleText: service.RuleText,
+		Title:     service.Title,
+		LimitNum:  service.LimitNum,
+		RuleText:  service.RuleText,
+		StartTime: t1,
+		EndTime:   t2,
 	}).Error
 
 	if err != nil {
