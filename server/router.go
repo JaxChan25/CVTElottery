@@ -145,13 +145,13 @@ func NewRouter() *gin.Engine {
 		* @catalog 活动相关
 		* @title 活动列表
 		* @description 查看活动列表的api。
-		* @method get
+		* @method post
 		* @url /api/v1/activities
 		* @param limit 可选 int 分页：每页大小
 		* @param offset 可选 int 分页：开始值
 		* @return {"code":0,"data":{"items":[{"id":1,"game_manager_id":2,"name":"社团抽奖活动","title":"1111title","type":0,"state":10,"mode":1,"limit_type":1,"limit_num":10,"rule_text":"只有美女才可以抽奖","foreground_image":"ForegroundImage_default.png","background_image":"BackgroundImage_default.png","virtual_num":888,"created_at":"2020-06-15 13:21"},{"id":2,"game_manager_id":2,"name":"社团抽奖活动","title":"1111title","type":0,"state":10,"mode":1,"limit_type":1,"limit_num":10,"rule_text":"只有美女才可以抽奖","foreground_image":"ForegroundImage_default.png","background_image":"BackgroundImage_default.png","virtual_num":888,"created_at":"2020-06-15 13:25"}],"total":2},"msg":""}
 		 */
-		v1.GET("activities", api.ListActivities)
+		v1.POST("activities", api.ListActivities)
 
 		/**
 		* showdoc
