@@ -52,41 +52,35 @@ func BuildListActivityPrizesResultsResponse(items []model.ListActivityPrizesResu
 	图表
 */
 
-// OneRecondOfGraphData 图表的一条信息
-type OneRecondOfGraphData struct {
-	Period string `json:"period" binding:"required"`
-	Count  int    `json:"count" binding:"required"`
+type uintData struct {
+	ViewCount        int `json:"view_count" binding:"required"`
+	ParticipateCount int `json:"participate_count" binding:"required"`
+	WinCount         int `json:"win_count" binding:"required"`
 }
 
-// AllGraphData 图表的所有信息
-type AllGraphData struct {
-	View        DataList `json:"view" binding:"required"`
-	Participate DataList `json:"participate" binding:"required"`
-	Win         DataList `json:"win" binding:"required"`
+// OneRecondOfGraphData 图表的一条信息
+type OneRecondOfGraphData struct {
+	Period   string   `json:"period" binding:"required"`
+	UintData uintData `json:"uint_data" binding:"required"`
 }
 
 //BuildOneRecordGraphDataResponse 序列化一条数据
 func BuildOneRecordGraphDataResponse(record model.GraphData) OneRecondOfGraphData {
+
 	return OneRecondOfGraphData{
 		Period: record.Period,
-		Count:  record.Count,
+		UintData: uintData{
+			ViewCount:        record.UintData.ViewCount,
+			ParticipateCount: record.UintData.ParticipateCount,
+			WinCount:         record.UintData.WinCount,
+		},
 	}
 }
 
-// BuildOneGraphDataResponse 序列化单个表格（包含多条数据）
-func BuildOneGraphDataResponse(items []model.GraphData) (datagraph []OneRecondOfGraphData) {
+// BuildGraphDataResponse 序列表格数据（包含多条数据）
+func BuildGraphDataResponse(items []model.GraphData) (datagraph []OneRecondOfGraphData) {
 	for _, item := range items {
 		datagraph = append(datagraph, BuildOneRecordGraphDataResponse(item))
 	}
 	return datagraph
-}
-
-// BuildAllGraphDataResponse 序列化三个表格（包含多条数据）
-func BuildAllGraphDataResponse(viewGraphData []model.GraphData, paticipateGraphData []model.GraphData, winGraphData []model.GraphData) AllGraphData {
-
-	return AllGraphData{
-		View:        DataList{Items: BuildOneGraphDataResponse(viewGraphData), Total: uint(len(viewGraphData))},
-		Participate: DataList{Items: BuildOneGraphDataResponse(paticipateGraphData), Total: uint(len(viewGraphData))},
-		Win:         DataList{Items: BuildOneGraphDataResponse(winGraphData), Total: uint(len(viewGraphData))},
-	}
 }
