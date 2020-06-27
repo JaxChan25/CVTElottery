@@ -91,13 +91,14 @@ func NewRouter() *gin.Engine {
 		/**
 		* showdoc
 		* @catalog 奖品相关
-		* @title 奖品列表
+		* @title 某个活动的奖品列表
 		* @description 查看奖品列表的api。
 		* @method get
-		* @url /api/v1/prizes
-		* @return {"code":0,"data":{"items":[{"id":1,"activity_id":0,"level":"","name":"","prob":0,"all_num":0,"surplus_num":0,"image":"PrizeImage_default.png","if_win":0,"created_at":"2020-06-14 23:31"},{"id":2,"activity_id":0,"level":"0","name":"帅哥陈亮","prob":0.8,"all_num":10,"surplus_num":1,"image":"PrizeImage_default.png","if_win":1,"created_at":"2020-06-14 23:38"},{"id":3,"activity_id":2,"level":"0","name":"帅哥陈亮","prob":0.8,"all_num":10,"surplus_num":1,"image":"PrizeImage_default.png","if_win":1,"created_at":"2020-06-14 23:41"}],"total":3},"msg":""}
+		* @param activity_id 必选 int 活动主键
+		* @url /api/v1/prizes/:id
+		* @return {"code":0,"data":{"items":[{"id":1,"activity_id":1,"level":"一等奖","name":"葫芦娃1","prob":0.1,"all_num":100,"surplus_num":98,"image":"https://qdtalk.com/wp-content/uploads/2017/09/1-2.png","if_win":2,"created_at":"2020-06-25 18:30"},{"id":2,"activity_id":1,"level":"一等奖","name":"葫芦娃2","prob":0.1,"all_num":100,"surplus_num":99,"image":"https://qdtalk.com/wp-content/uploads/2017/09/1-2.png","if_win":2,"created_at":"2020-06-25 18:30"},{"id":3,"activity_id":1,"level":"一等奖","name":"葫芦娃3","prob":0.1,"all_num":100,"surplus_num":96,"image":"https://qdtalk.com/wp-content/uploads/2017/09/1-2.png","if_win":2,"created_at":"2020-06-25 18:30"},{"id":4,"activity_id":1,"level":"二等奖","name":"葫芦娃4","prob":0.1,"all_num":100,"surplus_num":97,"image":"https://qdtalk.com/wp-content/uploads/2017/09/1-2.png","if_win":2,"created_at":"2020-06-25 18:30"},{"id":5,"activity_id":1,"level":"二等奖","name":"葫芦娃5","prob":0.1,"all_num":100,"surplus_num":95,"image":"https://qdtalk.com/wp-content/uploads/2017/09/1-2.png","if_win":2,"created_at":"2020-06-25 18:30"},{"id":6,"activity_id":1,"level":"二等奖","name":"葫芦娃6","prob":0.1,"all_num":100,"surplus_num":99,"image":"https://qdtalk.com/wp-content/uploads/2017/09/1-2.png","if_win":2,"created_at":"2020-06-25 18:30"},{"id":7,"activity_id":1,"level":"三等奖","name":"葫芦娃7","prob":0.1,"all_num":100,"surplus_num":94,"image":"https://qdtalk.com/wp-content/uploads/2017/09/1-2.png","if_win":2,"created_at":"2020-06-25 18:30"},{"id":8,"activity_id":1,"level":"三等奖","name":"葫芦娃8","prob":0.1,"all_num":100,"surplus_num":100,"image":"https://qdtalk.com/wp-content/uploads/2017/09/1-2.png","if_win":2,"created_at":"2020-06-25 18:30"},{"id":9,"activity_id":1,"level":"三等奖","name":"葫芦娃9","prob":0.1,"all_num":100,"surplus_num":99,"image":"https://qdtalk.com/wp-content/uploads/2017/09/1-2.png","if_win":2,"created_at":"2020-06-25 18:30"},{"id":10,"activity_id":1,"level":"不中奖","name":"葫芦娃10","prob":0.1,"all_num":100,"surplus_num":100,"image":"https://qdtalk.com/wp-content/uploads/2017/09/1-2.png","if_win":1,"created_at":"2020-06-25 18:30"}],"total":10},"msg":""}
 		 */
-		v1.GET("prizes", api.ListPrizes)
+		v1.GET("prizes/:id", api.ListPrizes)
 
 		/**
 		* showdoc
@@ -195,7 +196,7 @@ func NewRouter() *gin.Engine {
 		* @param id 必选 int 活动主键
 		* @param start_time 必选 string 表格起始时间
 		* @param end_time 必选 string 表格终止时间
-		* @return {"code":0,"data":{"view":{"items":[{"period":"2020-06-17 14:25","count":1},{"period":"2020-06-17 15:15","count":1}],"total":2},"participate":{"items":[{"period":"2020-06-17 15:15","count":2},{"period":"2020-06-17 15:25","count":13},{"period":"2020-06-17 17:50","count":1}],"total":2},"win":{"items":[{"period":"2020-06-17 15:15","count":1},{"period":"2020-06-17 15:25","count":5},{"period":"2020-06-17 17:50","count":1}],"total":2}},"msg":""}
+		* @return {"code":0,"data":[{"period":"2020-06-27 10:00","uint_data":{"view_count":0,"participate_count":0,"win_count":0}},{"period":"2020-06-27 11:00","uint_data":{"view_count":0,"participate_count":0,"win_count":0}},{"period":"2020-06-27 12:00","uint_data":{"view_count":0,"participate_count":0,"win_count":0}},{"period":"2020-06-27 13:00","uint_data":{"view_count":0,"participate_count":0,"win_count":0}},{"period":"2020-06-27 14:00","uint_data":{"view_count":0,"participate_count":0,"win_count":0}},{"period":"2020-06-27 15:00","uint_data":{"view_count":0,"participate_count":0,"win_count":0}},{"period":"2020-06-27 16:00","uint_data":{"view_count":0,"participate_count":0,"win_count":0}},{"period":"2020-06-27 17:00","uint_data":{"view_count":9,"participate_count":6,"win_count":6}},{"period":"2020-06-27 18:00","uint_data":{"view_count":17,"participate_count":12,"win_count":12}},{"period":"2020-06-27 19:00","uint_data":{"view_count":0,"participate_count":0,"win_count":0}}],"msg":""}
 		 */
 		v1.POST("graphdata", api.GetGraphData)
 

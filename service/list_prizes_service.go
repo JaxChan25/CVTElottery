@@ -10,12 +10,11 @@ type ListPrizesService struct {
 }
 
 // List 展示奖品列表
-func (service *ListPrizesService) List() serializer.Response {
+func (service *ListPrizesService) List(id string) serializer.Response {
 
 	var prizes []model.GamePrize
-	total := 0
 
-	if err := model.DB.Model(model.GamePrize{}).Count(&total).Error; err != nil {
+	if err := model.DB.Where("activity_id=?", id).Find(&prizes).Error; err != nil {
 		return serializer.Response{
 			Code:  50000,
 			Msg:   "数据库查询错误",
@@ -23,14 +22,6 @@ func (service *ListPrizesService) List() serializer.Response {
 		}
 	}
 
-	if err := model.DB.Find(&prizes).Error; err != nil {
-		return serializer.Response{
-			Code:  50000,
-			Msg:   "数据库查询错误",
-			Error: err.Error(),
-		}
-	}
-
-	return serializer.BuildListResponse(serializer.BuildPrizesResponse(prizes), uint(total))
+	return serializer.BuildListResponse(serializer.BuildPrizesResponse(prizes), uint(len(prizes)))
 
 }

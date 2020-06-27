@@ -23,12 +23,8 @@ func PrizePost(c *gin.Context) {
 // ListPrizes 列处所有奖品
 func ListPrizes(c *gin.Context) {
 	service := service.ListPrizesService{}
-	if err := c.ShouldBind(&service); err == nil {
-		res := service.List()
-		c.JSON(200, res)
-	} else {
-		c.JSON(200, ErrorResponse(err))
-	}
+	res := service.List(c.Param("id"))
+	c.JSON(200, res)
 }
 
 // ListUserPrizes 列出某用户在某活动中奖的所有奖品
