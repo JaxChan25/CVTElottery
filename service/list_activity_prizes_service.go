@@ -38,7 +38,29 @@ func (service *ListActivityPrizesService) List() serializer.Response {
 			Error: err.Error(),
 		}
 	}
-	total := len(results)
+
+	rows, err := model.DB.Raw(
+		`
+	select  count(*) as total
+	from ((((select  created_at, game_user_id ,activity_id,result as prize_id  from user_actions where action_type =? and activity_id =?) as t1
+	inner join game_prizes t2 on t2.activity_id = t1.activity_id and t2.id = t1.prize_id))
+	inner join addresses t3 on t3.game_user_id = t1.game_user_id)
+	inner join game_users t4 on t4.id = t1.game_user_id
+	`, 3, service.ActivityID).Rows()
+	defer rows.Close()
+	var total int
+	for rows.Next() {
+		rows.Scan(&total)
+	}
+
+	if err != nil {
+		return serializer.Response{
+			Code:  50000,
+			Msg:   "数据库查询错误",
+			Error: err.Error(),
+		}
+	}
+
 	return serializer.BuildListResponse(serializer.BuildListActivityPrizesResultsResponse(results), uint(total))
 
 }
